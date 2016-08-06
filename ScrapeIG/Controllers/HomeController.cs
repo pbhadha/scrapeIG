@@ -20,14 +20,22 @@ namespace ScrapeIG.Controllers
             //Using statement is used for types that implement IDisposable
             //After the use is complete, it disposes it
             using (HttpClient aClient = new HttpClient()) {
+                var postParameters = new Dictionary<string, string> {
+                    { "client_id", " d77b5e5cdd794485a10b72a5377bfb3d" },
+                    { "client_secret", "d77b5e5cdd794485a10b72a5377bfb3d" },
+                    { "grant_type", "authorization_code" },
+                    { "redirect_uri", "http://localhost/ScrapeIG/" },
+                    { "code", " fa9f830bd43b4942ba1e886daa2a2ed3" }
+                };
+                var content = new FormUrlEncodedContent(postParameters);
 
+                var response = aClient.PostAsync("https://api.instagram.com/oauth/access_token", content);
+
+                var responseString = response.Result;
             }
-            
-            
-            //aClient.BaseAddress = "";
-
 
             return View();
+
         }
 
         public ActionResult About()
