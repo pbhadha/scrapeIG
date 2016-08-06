@@ -17,7 +17,13 @@ namespace ScrapeIG.Controllers
 
             //http://localhost/ScrapeIG/?code=fa9f830bd43b4942ba1e886daa2a2ed3
 
-            HttpClient aClient = new HttpClient();
+            //Using statement is used for types that implement IDisposable
+            //After the use is complete, it disposes it
+            using (HttpClient aClient = new HttpClient()) {
+
+            }
+            
+            
             //aClient.BaseAddress = "";
 
 
