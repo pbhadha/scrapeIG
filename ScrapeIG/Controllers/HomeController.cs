@@ -13,7 +13,12 @@ namespace ScrapeIG.Controllers
     {
         public ActionResult Index()
         {
-            Debug.WriteLine(WebConfigurationManager.AppSettings["InstagramAccessToken"]);
+            Debug.WriteLine(WebConfigurationManager.AppSettings["InstagramClientID"]);
+
+
+            using(HttpClient aGetRequest = new HttpClient()) {
+                aGetRequest.BaseAddress = new Uri("https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code");
+            }
 
             //http://localhost/ScrapeIG/?code=fa9f830bd43b4942ba1e886daa2a2ed3
 
@@ -25,7 +30,7 @@ namespace ScrapeIG.Controllers
                     { "client_secret", "d77b5e5cdd794485a10b72a5377bfb3d" },
                     { "grant_type", "authorization_code" },
                     { "redirect_uri", "http://localhost/ScrapeIG/" },
-                    { "code", " fa9f830bd43b4942ba1e886daa2a2ed3" }
+                    { "code", "fa9f830bd43b4942ba1e886daa2a2ed3" }
                 };
                 var content = new FormUrlEncodedContent(postParameters);
 
